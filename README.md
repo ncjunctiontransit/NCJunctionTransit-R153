@@ -43,8 +43,8 @@ The **R153** is a massive, multi-type order of subway cars from **Kawasaki Rail 
 | Type | Description | Numbers | Traction | Lines |
 |------|-------------|---------|----------|-------|
 | **R153S** | Staten Island Railway | 200-274 | Alstom OptONIX | SIR |
-| **R153A** | Standard A Division | 2400-3499, 3500-4607, 5040-5439 | Alstom / Siemens / Hitachi | A, B, C, D, G, J, M, N, Q, W |
-| **R153T** | Technical Variant | 3040-3059, 4610-5039 | Alstom / Hitachi | D Line (primary), testing |
+| **R153A** | Standard B Division | 2400-3499, 3500-4607, 5040-5439 | Alstom / Siemens / Hitachi | A, B, C, D, G, J, M, N, Q, W |
+| **R153T** | Open-Gangway Variant | 3040-3059, 4610-5039 | Alstom / Hitachi | D Line (primary), testing |
 | **R153B** | Future Order | 5350-5527 | Siemens SIC-VVVF | C, L, B, G, N, Q, W |
 
 ---
