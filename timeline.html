@@ -1,0 +1,188 @@
+// NCJunctionTransit - R153 Fleet Tracker
+// Main JavaScript File
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // ========================================
+    // FLEET TYPE FILTER (fleet.html)
+    // ========================================
+    const fleetTypeBtns = document.querySelectorAll('.fleet-type-btn');
+    if (fleetTypeBtns.length > 0) {
+        fleetTypeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                fleetTypeBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const type = this.dataset.type;
+                const rows = document.querySelectorAll('tbody tr');
+                
+                rows.forEach(row => {
+                    if (type === 'all') {
+                        row.style.display = '';
+                    } else {
+                        const rowType = row.getAttribute('data-type');
+                        if (rowType === type) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });
+    }
+    
+    // ========================================
+    // TIMELINE FILTER (timeline.html)
+    // ========================================
+    const timelineBtns = document.querySelectorAll('.timeline-btn');
+    if (timelineBtns.length > 0) {
+        timelineBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                timelineBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const period = this.dataset.period;
+                const years = document.querySelectorAll('.timeline-year');
+                
+                if (period === 'all') {
+                    years.forEach(year => year.style.display = 'block');
+                } else {
+                    years.forEach(year => {
+                        if (year.dataset.year === period) {
+                            year.style.display = 'block';
+                        } else {
+                            year.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+    }
+    
+    // ========================================
+    // REVIEW FORM SUBMISSION (rider-feedback.html)
+    // ========================================
+    const reviewForm = document.getElementById('reviewForm');
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('reviewerName').value;
+            const line = document.getElementById('reviewLine').value;
+            const text = document.getElementById('reviewText').value;
+            const rating = document.getElementById('reviewRating').value;
+            
+            // Create star string
+            let stars = '';
+            for (let i = 0; i < parseInt(rating); i++) {
+                stars += '⭐';
+            }
+            
+            // Create new review card
+            const reviewGrid = document.querySelector('.review-grid');
+            const newReview = document.createElement('div');
+            newReview.className = 'review-card';
+            newReview.innerHTML = `
+                <div class="review-header">
+                    <span class="review-line">🚇 ${line} Line</span>
+                    <span class="review-date">${getCurrentDate()}</span>
+                </div>
+                <p class="review-text">${text}</p>
+                <div class="review-footer">
+                    <span class="review-author">${name}</span>
+                    <span class="review-stars">${stars}</span>
+                </div>
+            `;
+            
+            // Add to grid (at the top)
+            reviewGrid.insertBefore(newReview, reviewGrid.firstChild);
+            
+            // Reset form
+            reviewForm.reset();
+            
+            // Show success message
+            alert('Thank you for your feedback! Your review has been added.');
+        });
+    }
+    
+    // Helper function to get current date
+    function getCurrentDate() {
+        const today = new Date();
+        const month = today.toLocaleString('default', { month: 'short' });
+        const day = today.getDate();
+        const year = today.getFullYear();
+        return `${month} ${day}, ${year}`;
+    }
+    
+    // ========================================
+    // LIVE DATA UPDATES (simulated)
+    // ========================================
+    function updateLiveStats() {
+        // This would normally fetch from an API
+        // For now, we'll just simulate occasional updates
+        console.log('Live stats updated');
+    }
+    
+    // Update every 5 minutes (simulated)
+    setInterval(updateLiveStats, 300000);
+    
+    // ========================================
+    // HIGHLIGHT ACTIVE NAVIGATION
+    // ========================================
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        if (linkHref === currentPage) {
+            link.classList.add('active');
+        } else if (currentPage === '' && linkHref === 'index.html') {
+            link.classList.add('active');
+        }
+    });
+    
+    // ========================================
+    // TOOLTIPS FOR FLEET TABLE
+    // ========================================
+    const fleetRows = document.querySelectorAll('.fleet-table tbody tr');
+    fleetRows.forEach(row => {
+        row.addEventListener('mouseenter', function() {
+            // Could show additional info
+        });
+    });
+    
+    // ========================================
+    // PRINT FUNCTIONALITY
+    // ========================================
+    // Add print button if needed
+    const addPrintButton = () => {
+        const panelTitles = document.querySelectorAll('.panel-title');
+        panelTitles.forEach(title => {
+            const printBtn = document.createElement('button');
+            printBtn.innerHTML = '<i class="fas fa-print"></i> Print';
+            printBtn.className = 'print-btn';
+            printBtn.style.marginLeft = 'auto';
+            printBtn.style.background = '#001d3d';
+            printBtn.style.color = 'white';
+            printBtn.style.border = 'none';
+            printBtn.style.padding = '0.5rem 1.5rem';
+            printBtn.style.borderRadius = '60px';
+            printBtn.style.cursor = 'pointer';
+            
+            printBtn.addEventListener('click', () => {
+                window.print();
+            });
+            
+            title.appendChild(printBtn);
+        });
+    };
+    
+    // Uncomment to add print buttons
+    // addPrintButton();
+});
