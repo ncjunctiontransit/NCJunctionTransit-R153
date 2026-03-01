@@ -1,188 +1,372 @@
-// NCJunctionTransit - R153 Fleet Tracker
-// Main JavaScript File
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCJunctionTransit · R153 Timeline</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="junction-card">
+        <!-- HEADER -->
+        <div class="nc-header">
+            <h1>
+                <i class="fas fa-train-subway"></i> 
+                Welcome to NCJunctionTransit
+            </h1>
+            <div class="tagline">
+                <i class="fas fa-cog fa-spin"></i>
+                We bring fiction to reality on your PCs.
+            </div>
+        </div>
 
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // ========================================
-    // FLEET TYPE FILTER (fleet.html)
-    // ========================================
-    const fleetTypeBtns = document.querySelectorAll('.fleet-type-btn');
-    if (fleetTypeBtns.length > 0) {
-        fleetTypeBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove active class from all buttons
-                fleetTypeBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
-                
-                const type = this.dataset.type;
-                const rows = document.querySelectorAll('tbody tr');
-                
-                rows.forEach(row => {
-                    if (type === 'all') {
-                        row.style.display = '';
-                    } else {
-                        const rowType = row.getAttribute('data-type');
-                        if (rowType === type) {
-                            row.style.display = '';
-                        } else {
-                            row.style.display = 'none';
-                        }
-                    }
-                });
-            });
-        });
-    }
-    
-    // ========================================
-    // TIMELINE FILTER (timeline.html)
-    // ========================================
-    const timelineBtns = document.querySelectorAll('.timeline-btn');
-    if (timelineBtns.length > 0) {
-        timelineBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove active class from all buttons
-                timelineBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
-                
-                const period = this.dataset.period;
-                const years = document.querySelectorAll('.timeline-year');
-                
-                if (period === 'all') {
-                    years.forEach(year => year.style.display = 'block');
-                } else {
-                    years.forEach(year => {
-                        if (year.dataset.year === period) {
-                            year.style.display = 'block';
-                        } else {
-                            year.style.display = 'none';
-                        }
-                    });
-                }
-            });
-        });
-    }
-    
-    // ========================================
-    // REVIEW FORM SUBMISSION (rider-feedback.html)
-    // ========================================
-    const reviewForm = document.getElementById('reviewForm');
-    if (reviewForm) {
-        reviewForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('reviewerName').value;
-            const line = document.getElementById('reviewLine').value;
-            const text = document.getElementById('reviewText').value;
-            const rating = document.getElementById('reviewRating').value;
-            
-            // Create star string
-            let stars = '';
-            for (let i = 0; i < parseInt(rating); i++) {
-                stars += '⭐';
-            }
-            
-            // Create new review card
-            const reviewGrid = document.querySelector('.review-grid');
-            const newReview = document.createElement('div');
-            newReview.className = 'review-card';
-            newReview.innerHTML = `
-                <div class="review-header">
-                    <span class="review-line">🚇 ${line} Line</span>
-                    <span class="review-date">${getCurrentDate()}</span>
+        <!-- Progress Panel -->
+        <div class="progress-panel">
+            <i class="fas fa-hard-hat"></i>
+            <span class="progress-text">📋 CURRENTLY IN PROGRESS</span>
+            <span class="small-note"><i class="fas fa-tag"></i> Kawasaki R153</span>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+            <a href="fleet.html" class="nav-link"><i class="fas fa-list-ul"></i> Fleet</a>
+            <a href="incidents.html" class="nav-link"><i class="fas fa-exclamation-triangle"></i> Incidents</a>
+            <a href="timeline.html" class="nav-link active"><i class="fas fa-calendar-alt"></i> Timeline</a>
+            <a href="rider-feedback.html" class="nav-link"><i class="fas fa-comment-dots"></i> Rider Feedback</a>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="content-stage">
+            <div class="page-panel active-panel">
+                <div class="panel-title">
+                    <i class="fas fa-calendar-alt"></i> R153 Delivery & Service Timeline
                 </div>
-                <p class="review-text">${text}</p>
-                <div class="review-footer">
-                    <span class="review-author">${name}</span>
-                    <span class="review-stars">${stars}</span>
+
+                <!-- Timeline Controls -->
+                <div class="timeline-controls">
+                    <button class="timeline-btn active" data-period="all">Full Timeline</button>
+                    <button class="timeline-btn" data-period="2025">2025</button>
+                    <button class="timeline-btn" data-period="2026">2026</button>
                 </div>
-            `;
-            
-            // Add to grid (at the top)
-            reviewGrid.insertBefore(newReview, reviewGrid.firstChild);
-            
-            // Reset form
-            reviewForm.reset();
-            
-            // Show success message
-            alert('Thank you for your feedback! Your review has been added.');
-        });
-    }
-    
-    // Helper function to get current date
-    function getCurrentDate() {
-        const today = new Date();
-        const month = today.toLocaleString('default', { month: 'short' });
-        const day = today.getDate();
-        const year = today.getFullYear();
-        return `${month} ${day}, ${year}`;
-    }
-    
-    // ========================================
-    // LIVE DATA UPDATES (simulated)
-    // ========================================
-    function updateLiveStats() {
-        // This would normally fetch from an API
-        // For now, we'll just simulate occasional updates
-        console.log('Live stats updated');
-    }
-    
-    // Update every 5 minutes (simulated)
-    setInterval(updateLiveStats, 300000);
-    
-    // ========================================
-    // HIGHLIGHT ACTIVE NAVIGATION
-    // ========================================
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
-        const linkHref = link.getAttribute('href');
-        if (linkHref === currentPage) {
-            link.classList.add('active');
-        } else if (currentPage === '' && linkHref === 'index.html') {
-            link.classList.add('active');
-        }
-    });
-    
-    // ========================================
-    // TOOLTIPS FOR FLEET TABLE
-    // ========================================
-    const fleetRows = document.querySelectorAll('.fleet-table tbody tr');
-    fleetRows.forEach(row => {
-        row.addEventListener('mouseenter', function() {
-            // Could show additional info
-        });
-    });
-    
-    // ========================================
-    // PRINT FUNCTIONALITY
-    // ========================================
-    // Add print button if needed
-    const addPrintButton = () => {
-        const panelTitles = document.querySelectorAll('.panel-title');
-        panelTitles.forEach(title => {
-            const printBtn = document.createElement('button');
-            printBtn.innerHTML = '<i class="fas fa-print"></i> Print';
-            printBtn.className = 'print-btn';
-            printBtn.style.marginLeft = 'auto';
-            printBtn.style.background = '#001d3d';
-            printBtn.style.color = 'white';
-            printBtn.style.border = 'none';
-            printBtn.style.padding = '0.5rem 1.5rem';
-            printBtn.style.borderRadius = '60px';
-            printBtn.style.cursor = 'pointer';
-            
-            printBtn.addEventListener('click', () => {
-                window.print();
-            });
-            
-            title.appendChild(printBtn);
-        });
-    };
-    
-    // Uncomment to add print buttons
-    // addPrintButton();
-});
+
+                <!-- Timeline -->
+                <div class="timeline-container">
+                    <!-- 2025 -->
+                    <div class="timeline-year" data-year="2025">
+                        <h2 class="timeline-year-header">2025</h2>
+                        
+                        <div class="timeline-month">July</div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">July 21</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge delivery">DELIVERY</span>
+                                <strong>3060-3069</strong> - First Base Order Pilot Sets delivered to Concourse Yard
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">July 22</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge delivery">DELIVERY</span>
+                                <strong>200-204</strong> - First Pilot R153S Set delivered to Clifton Yard (SIR)
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">July 26</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>3060-3069</strong> - First R153A Pilot Cars enter service on B Line
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">July 31</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>3040-3049</strong> - R153T Pilot Sets enter service on D Line
+                            </div>
+                        </div>
+
+                        <div class="timeline-month">August</div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Aug 2</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge delivery">DELIVERY</span>
+                                <strong>2400-2429</strong> - First Batch 1, Option Order 1 Sets delivered to Pitkin Yard
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Aug 5</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>2400-2419</strong> - Enter service on A Line
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Aug 6</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge incident">INCIDENT</span>
+                                <strong>3073</strong> - Caught fire on B Line
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Aug 8</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge delivery">DELIVERY</span>
+                                <strong>4030-4037</strong> - First 4-Car Pilot Sets delivered to East New York Yard
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Aug 12</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>200-204</strong> - First R153S enter service on SIR Mainline
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Aug 16</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>4030-4037</strong> - First 4-Car Sets enter service on J Line
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Aug 23</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge linechange">LINE CHANGE</span>
+                                <strong>3040-3049</strong> - Entered G Line service
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Aug 29</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge delivery">DELIVERY</span>
+                                <strong>3500-3509</strong> - First Batch 2 Primary Order (Siemens) delivered
+                            </div>
+                        </div>
+
+                        <div class="timeline-month">September</div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Sept 5</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>2450-2459</strong> - Enter service on C Line
+                            </div>
+                        </div>
+
+                        <div class="timeline-month">October</div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Oct 12</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>3500-3504</strong> - First Batch 2 Siemens set enters service on G Line
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Oct 14</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>3510-3519</strong> - First Batch 2 Siemens on B Line
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Oct 22</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge delivery">DELIVERY</span>
+                                <strong>3470-3499</strong> - Final Batch 1 Base Order delivered
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Oct 27</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>270-274</strong> - Final R153S enter service on SIR
+                            </div>
+                        </div>
+
+                        <div class="timeline-month">November</div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Nov 8</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge delivery">DELIVERY</span>
+                                <strong>2600-2629</strong> - CIY Option Order 1 delivered
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Nov 10</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge testing">TESTING</span>
+                                <strong>3040-3049</strong> - F Line CBTC Testing
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Nov 20</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge linechange">LINE CHANGE</span>
+                                <strong>3040-3049</strong> - Entered B Line service (final assignment)
+                            </div>
+                        </div>
+
+                        <div class="timeline-month">December</div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Dec 14</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge delivery">DELIVERY</span>
+                                <strong>4150-4157</strong> - First 4-Car Pitkin Sets delivered
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Dec 20</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge linechange">LINE CHANGE</span>
+                                <strong>3110-3119</strong> - Temporarily moved to E Line
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2026 -->
+                    <div class="timeline-year" data-year="2026">
+                        <h2 class="timeline-year-header">2026</h2>
+                        
+                        <div class="timeline-month">January</div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jan 1</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>4054-4061</strong> - Enter service on M Line for CBTC Tests
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jan 12</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>3700-3704</strong> - Enter service on G Line
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jan 12</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>2610-2619</strong> - Enter service on W Line
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jan 17</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge delivery">DELIVERY</span>
+                                <strong>4600-4609</strong> - First R153T Production Sets (Hitachi) delivered
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jan 25</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>2630-2634</strong> - Enter service on G Line
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jan 29</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge delivery">DELIVERY</span>
+                                <strong>2700-2709</strong> - First D Line-destined Batch 1 OO1 delivered
+                            </div>
+                        </div>
+
+                        <div class="timeline-month">February</div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Feb 3</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge upgrade">UPGRADE</span>
+                                <strong>3060-3079</strong> - LCD Window Information Screens installed
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Feb 15</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>2700-2709</strong> - First D Line-dedicated sets enter service
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Feb 24</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge incident">INCIDENT</span>
+                                <strong>3400-3409 (3407)</strong> - Fire/explosion at 145th Street (B Line)
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Feb 24</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>2710-2719</strong> - Enter service on D Line
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Feb 27</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge incident">INCIDENT</span>
+                                <strong>2644</strong> - Fire at Hoyt-Schermerhorn (G Line) - 10:24 PM
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Feb 27</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>2720-2729</strong> - Enter service on D Line
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Feb 28</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge delivery">DELIVERY</span>
+                                <strong>2770-2779, 3760-3769</strong> - New deliveries to Pitkin and Concourse
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Feb 28</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>2640-2644</strong> - RESTORED to G Line service at 9:57 AM
+                            </div>
+                        </div>
+
+                        <div class="timeline-month">March (Projected)</div>
+                        <div class="timeline-item future">
+                            <div class="timeline-date">Early March</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge service">SERVICE</span>
+                                <strong>3760-3769</strong> - Expected to enter D Line service
+                            </div>
+                        </div>
+                        <div class="timeline-item future">
+                            <div class="timeline-date">March 15</div>
+                            <div class="timeline-content">
+                                <span class="timeline-badge delivery">DELIVERY</span>
+                                <strong>4800-5039</strong> - R153T Option Order 1 deliveries begin
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legend -->
+                <div class="timeline-legend">
+                    <span class="legend-item"><span class="legend-dot delivery"></span> Delivery</span>
+                    <span class="legend-item"><span class="legend-dot service"></span> Service Entry</span>
+                    <span class="legend-item"><span class="legend-dot incident"></span> Incident</span>
+                    <span class="legend-item"><span class="legend-dot linechange"></span> Line Change</span>
+                    <span class="legend-item"><span class="legend-dot testing"></span> Testing</span>
+                    <span class="legend-item"><span class="legend-dot upgrade"></span> Upgrade</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="nc-footer">
+            <span><i class="fas fa-train"></i> NCJunctionTransit · © 2026</span>
+            <span class="footer-motto"><i class="fas fa-dice-d6"></i> We bring R153s to life</span>
+            <span><i class="fas fa-subway"></i> v.R153.03</span>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
