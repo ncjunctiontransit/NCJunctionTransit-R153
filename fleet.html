@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCJunctionTransit · R153 Fleet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="junction-card">
+        <!-- HEADER -->
+        <div class="nc-header">
+            <h1>
+                <i class="fas fa-train-subway"></i> 
+                Welcome to NCJunctionTransit
+            </h1>
+            <div class="tagline">
+                <i class="fas fa-cog fa-spin"></i>
+                We bring fiction to reality on your PCs.
+            </div>
+        </div>
+
+        <!-- Progress Panel -->
+        <div class="progress-panel">
+            <i class="fas fa-hard-hat"></i>
+            <span class="progress-text">📋 CURRENTLY IN PROGRESS</span>
+            <span class="small-note"><i class="fas fa-tag"></i> Kawasaki R153</span>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+            <a href="fleet.html" class="nav-link active"><i class="fas fa-list-ul"></i> Fleet</a>
+            <a href="incidents.html" class="nav-link"><i class="fas fa-exclamation-triangle"></i> Incidents</a>
+            <a href="timeline.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Timeline</a>
+            <a href="rider-feedback.html" class="nav-link"><i class="fas fa-comment-dots"></i> Rider Feedback</a>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="content-stage">
+            <div class="page-panel active-panel">
+                <div class="panel-title">
+                    <i class="fas fa-list-ul"></i> Complete R153 Fleet Information
+                </div>
+
+                <!-- Fleet Type Tabs -->
+                <div class="fleet-type-tabs">
+                    <button class="fleet-type-btn active" data-type="all">All Types</button>
+                    <button class="fleet-type-btn" data-type="r153s">R153S</button>
+                    <button class="fleet-type-btn" data-type="r153a">R153A</button>
+                    <button class="fleet-type-btn" data-type="r153t">R153T</button>
+                    <button class="fleet-type-btn" data-type="r153b">R153B</button>
+                </div>
+
+                <!-- Full Fleet Table -->
+                <table class="fleet-table full-width">
+                    <thead>
+                        <tr>
+                            <th>Fleet Type</th>
+                            <th>Numbers</th>
+                            <th>Builder</th>
+                            <th>Traction</th>
+                            <th>Configuration</th>
+                            <th>Order Type</th>
+                            <th>Yard</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-type="r153s">
+                            <td>R153S</td>
+                            <td>200-274</td>
+                            <td>Kawasaki</td>
+                            <td>Alstom OptONIX</td>
+                            <td>5-Car</td>
+                            <td>Base Order</td>
+                            <td>Clifton</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>2400-2599</td>
+                            <td>Kawasaki</td>
+                            <td>Alstom OptONIX</td>
+                            <td>10-Car (2x5)</td>
+                            <td>Batch 1, OO1</td>
+                            <td>Pitkin</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>2600-2699</td>
+                            <td>Kawasaki</td>
+                            <td>Alstom OptONIX</td>
+                            <td>5-Car</td>
+                            <td>Batch 1, OO1</td>
+                            <td>Coney Island</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>2700-2729</td>
+                            <td>Kawasaki</td>
+                            <td>Alstom OptONIX</td>
+                            <td>10-Car (2x5)</td>
+                            <td>Batch 1, OO1</td>
+                            <td>Concourse</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>2730-2769</td>
+                            <td>Kawasaki</td>
+                            <td>Alstom OptONIX</td>
+                            <td>10-Car (2x5)</td>
+                            <td>Batch 1, OO1</td>
+                            <td>Pitkin</td>
+                            <td><span class="status-badge testing">Testing</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>2770-2779</td>
+                            <td>Kawasaki</td>
+                            <td>Alstom OptONIX</td>
+                            <td>10-Car (2x5)</td>
+                            <td>Batch 1, OO1</td>
+                            <td>Pitkin</td>
+                            <td><span class="status-badge testing">Testing</span></td>
+                        </tr>
+                        <tr data-type="r153t">
+                            <td>R153T</td>
+                            <td>3040-3059</td>
+                            <td>Kawasaki</td>
+                            <td>Alstom OptONIX</td>
+                            <td>10-Car (2x5)</td>
+                            <td>Base Order (Pilot)</td>
+                            <td>Coney Island</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>3060-3069</td>
+                            <td>Kawasaki</td>
+                            <td>Alstom OptONIX</td>
+                            <td>10-Car (2x5)</td>
+                            <td>Batch 1, Base</td>
+                            <td>Concourse</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>3070-3499</td>
+                            <td>Kawasaki</td>
+                            <td>Alstom OptONIX</td>
+                            <td>10-Car (2x5)</td>
+                            <td>Batch 1, Base</td>
+                            <td>Coney Island</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>3500-3599</td>
+                            <td>Kawasaki</td>
+                            <td>Siemens SiTRAC</td>
+                            <td>10-Car (2x5)</td>
+                            <td>Batch 2, Primary</td>
+                            <td>Pitkin</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>3600-3699</td>
+                            <td>Kawasaki</td>
+                            <td>Siemens SiTRAC</td>
+                            <td>10-Car (2x5)</td>
+                            <td>Batch 2, Primary</td>
+                            <td>Coney Island</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>3700-3729</td>
+                            <td>Kawasaki</td>
+                            <td>Siemens SiTRAC</td>
+                            <td>5-Car</td>
+                            <td>Batch 2, Primary</td>
+                            <td>Coney Island</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>3730-3749</td>
+                            <td>Kawasaki</td>
+                            <td>Siemens SiTRAC</td>
+                            <td>5-Car</td>
+                            <td>Batch 2, Primary</td>
+                            <td>Coney Island</td>
+                            <td><span class="status-badge testing">Testing</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>3750-3759</td>
+                            <td>Kawasaki</td>
+                            <td>Siemens SiTRAC</td>
+                            <td>10-Car (2x5)</td>
+                            <td>Batch 2, Primary</td>
+                            <td>Pitkin</td>
+                            <td><span class="status-badge testing">Testing</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>3760-3769</td>
+                            <td>Kawasaki</td>
+                            <td>Siemens SiTRAC</td>
+                            <td>10-Car (2x5)</td>
+                            <td>Batch 2, Primary</td>
+                            <td>Concourse</td>
+                            <td><span class="status-badge testing">Testing</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>4030-4149</td>
+                            <td>Kawasaki</td>
+                            <td>Alstom OptONIX</td>
+                            <td>8-Car (2x4)</td>
+                            <td>Batch 1, Base</td>
+                            <td>East New York</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>4150-4249</td>
+                            <td>Kawasaki</td>
+                            <td>Alstom OptONIX</td>
+                            <td>8-Car (2x4)</td>
+                            <td>Batch 1, Base</td>
+                            <td>Pitkin</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                        </tr>
+                        <tr data-type="r153a">
+                            <td>R153A</td>
+                            <td>4500-4507</td>
+                            <td>Kawasaki</td>
+                            <td>Siemens SiTRAC</td>
+                            <td>4-Car</td>
+                            <td>Batch 2, OO2</td>
+                            <td>Coney Island</td>
+                            <td><span class="status-badge testing">Testing</span></td>
+                        </tr>
+                        <tr data-type="r153t">
+                            <td>R153T</td>
+                            <td>4600-4629</td>
+                            <td>Kawasaki</td>
+                            <td>Hitachi ELC</td>
+                            <td>10-Car (2x5)</td>
+                            <td>Batch 1, Base</td>
+                            <td>Concourse/Pitkin</td>
+                            <td><span class="status-badge testing">Testing</span></td>
+                        </tr>
+                        <tr data-type="r153b">
+                            <td>R153B</td>
+                            <td>5350-5527</td>
+                            <td>Kawasaki</td>
+                            <td>Siemens SIC-VVVF</td>
+                            <td>4/5-Car</td>
+                            <td>Batch 1, Base</td>
+                            <td>Future</td>
+                            <td><span class="status-badge future">Future Order</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Yard Summary -->
+                <div style="margin: 2rem 0;">
+                    <h2 style="color: #001d3d;">Yard Assignments</h2>
+                </div>
+
+                <div class="yard-grid">
+                    <div class="yard-card">
+                        <h3><i class="fas fa-map-pin"></i> Pitkin Yard</h3>
+                        <p><strong>A/C/S Lines</strong></p>
+                        <p>2400-2599, 2730-2779, 3500-3599, 4150-4249, 4600-4619</p>
+                        <p class="yard-count">510 cars</p>
+                    </div>
+                    <div class="yard-card">
+                        <h3><i class="fas fa-map-pin"></i> Coney Island Yard</h3>
+                        <p><strong>B/G/N/Q/W</strong></p>
+                        <p>2600-2699, 3040-3059, 3070-3499, 3600-3749, 4500-4507</p>
+                        <p class="yard-count">698 cars</p>
+                    </div>
+                    <div class="yard-card">
+                        <h3><i class="fas fa-map-pin"></i> Concourse Yard</h3>
+                        <p><strong>D Line</strong></p>
+                        <p>2700-2729, 3060-3069, 3760-3769, 4610-4619</p>
+                        <p class="yard-count">70 cars</p>
+                    </div>
+                    <div class="yard-card">
+                        <h3><i class="fas fa-map-pin"></i> East New York Yard</h3>
+                        <p><strong>J/L/M/Z</strong></p>
+                        <p>4030-4149</p>
+                        <p class="yard-count">120 cars</p>
+                    </div>
+                    <div class="yard-card">
+                        <h3><i class="fas fa-map-pin"></i> Clifton Yard</h3>
+                        <p><strong>SIR</strong></p>
+                        <p>200-274</p>
+                        <p class="yard-count">75 cars</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="nc-footer">
+            <span><i class="fas fa-train"></i> NCJunctionTransit · © 2026</span>
+            <span class="footer-motto"><i class="fas fa-dice-d6"></i> We bring R153s to life</span>
+            <span><i class="fas fa-subway"></i> v.R153.03</span>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
