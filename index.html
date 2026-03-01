@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCJunctionTransit · R153 Fleet Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="junction-card">
+        <!-- HEADER -->
+        <div class="nc-header">
+            <h1>
+                <i class="fas fa-train-subway"></i> 
+                Welcome to NCJunctionTransit
+            </h1>
+            <div class="tagline">
+                <i class="fas fa-cog fa-spin"></i>
+                We bring fiction to reality on your PCs.
+            </div>
+        </div>
+
+        <!-- Progress Panel -->
+        <div class="progress-panel">
+            <i class="fas fa-hard-hat"></i>
+            <span class="progress-text">📋 CURRENTLY IN PROGRESS</span>
+            <span class="small-note"><i class="fas fa-tag"></i> Kawasaki R153</span>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+            <a href="fleet.html" class="nav-link"><i class="fas fa-list-ul"></i> Fleet</a>
+            <a href="incidents.html" class="nav-link"><i class="fas fa-exclamation-triangle"></i> Incidents</a>
+            <a href="timeline.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Timeline</a>
+            <a href="rider-feedback.html" class="nav-link"><i class="fas fa-comment-dots"></i> Rider Feedback</a>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div class="content-stage">
+            <div class="page-panel active-panel">
+                <div class="panel-title">
+                    <i class="fas fa-dashboard"></i> R153 Fleet Dashboard
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-train"></i>
+                        <div class="stat-number">1,658</div>
+                        <div class="stat-label">Total Cars Delivered</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="stat-number">1,540+</div>
+                        <div class="stat-label">In Service</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-cogs"></i>
+                        <div class="stat-number">118</div>
+                        <div class="stat-label">In Testing</div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-calendar-check"></i>
+                        <div class="stat-number">67.5%</div>
+                        <div class="stat-label">Program Complete</div>
+                    </div>
+                </div>
+
+                <!-- Quick Fleet Overview -->
+                <div style="margin: 2rem 0 1rem 0;">
+                    <h2 style="color: #001d3d; border-left: 8px solid #ffb703; padding-left: 1rem;">Fleet at a Glance</h2>
+                </div>
+
+                <table class="fleet-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Numbers</th>
+                            <th>Traction</th>
+                            <th>Status</th>
+                            <th>Primary Lines</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="fleet-badge" style="background: #6b2d5e;">R153S</span></td>
+                            <td>200-274</td>
+                            <td>Alstom OptONIX</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                            <td>SIR</td>
+                        </tr>
+                        <tr>
+                            <td><span class="fleet-badge" style="background: #0047ab;">R153A</span></td>
+                            <td>2400-2769</td>
+                            <td>Alstom</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                            <td>A, C, D, G</td>
+                        </tr>
+                        <tr>
+                            <td><span class="fleet-badge" style="background: #0047ab;">R153A</span></td>
+                            <td>3070-3499</td>
+                            <td>Alstom</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                            <td>B, N, Q</td>
+                        </tr>
+                        <tr>
+                            <td><span class="fleet-badge" style="background: #009688;">R153A</span></td>
+                            <td>3500-3769</td>
+                            <td>Siemens SiTRAC</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                            <td>A, B, C, G</td>
+                        </tr>
+                        <tr>
+                            <td><span class="fleet-badge" style="background: #8B1E3F;">R153T</span></td>
+                            <td>3040-3059</td>
+                            <td>Alstom</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                            <td>B Line</td>
+                        </tr>
+                        <tr>
+                            <td><span class="fleet-badge" style="background: #8B1E3F;">R153T</span></td>
+                            <td>4600-4629</td>
+                            <td>Hitachi</td>
+                            <td><span class="status-badge testing">Testing</span></td>
+                            <td>D Line (future)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="fleet-badge" style="background: #b11b1b;">4-Car</span></td>
+                            <td>4030-4249</td>
+                            <td>Alstom</td>
+                            <td><span class="status-badge service">In Service</span></td>
+                            <td>C, J, M</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Recent Events -->
+                <div style="margin: 2rem 0;">
+                    <h2 style="color: #001d3d; border-left: 8px solid #ffb703; padding-left: 1rem;">Recent Updates</h2>
+                </div>
+
+                <div class="updates-list">
+                    <div class="update-item">
+                        <div class="update-date">Feb 28, 2026</div>
+                        <div class="update-content">
+                            <strong>New Deliveries:</strong> R153A 2770-2779 (Alstom) to Pitkin Yard · R153A 3760-3769 (Siemens) to Concourse Yard
+                        </div>
+                    </div>
+                    <div class="update-item">
+                        <div class="update-date">Feb 28, 2026</div>
+                        <div class="update-content">
+                            <strong>Restored:</strong> R153A 2640-2644 returned to G Line service at 9:57 AM after fire incident
+                        </div>
+                    </div>
+                    <div class="update-item">
+                        <div class="update-date">Feb 27, 2026</div>
+                        <div class="update-content">
+                            <strong>Incident:</strong> Fire on R153A 2644 at Hoyt-Schermerhorn (G Line) - under investigation
+                        </div>
+                    </div>
+                    <div class="update-item">
+                        <div class="update-date">Feb 27, 2026</div>
+                        <div class="update-content">
+                            <strong>Service Entry:</strong> R153A 2720-2729 entered service on D Line
+                        </div>
+                    </div>
+                </div>
+
+                <!-- D Line Progress -->
+                <div style="margin: 2rem 0 1rem;">
+                    <h2 style="color: #001d3d;">D Line Conversion Progress</h2>
+                    <div class="progress-bar-container">
+                        <div class="progress-label">70 cars / 300 target</div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 23%;">23%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="nc-footer">
+            <span><i class="fas fa-train"></i> NCJunctionTransit · © 2026</span>
+            <span class="footer-motto"><i class="fas fa-dice-d6"></i> We bring R153s to life</span>
+            <span><i class="fas fa-subway"></i> v.R153.03</span>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
